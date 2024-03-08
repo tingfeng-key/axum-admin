@@ -5,3 +5,11 @@ edition.workspace = true
 rust-version.workspace = true
 
 [dependencies]
+diesel = { workspace = true, optional = true }
+diesel-async = { workspace = true, optional = true }
+prisma-client-rust = { workspace = true, optional = true }
+
+[features]
+prisma = ["dep:prisma-client-rust"]
+diesel = ["dep:diesel"]
+diesel_async = ["dep:diesel", "diesel-async"]
