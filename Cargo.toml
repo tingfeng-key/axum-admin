@@ -1,12 +1,14 @@
 [workspace]
 members = [
+    "app/prisma_cli",
+    "app/cli",
     "app/admin",
     "app/api",
-    "app/cli",
     "app/merchant",
-    "prisma/prisma_cli",
+    "config",
+    "model",
     "service",
-    "utils",
+    "utils", 
 ]
 default-members = ["app/cli"]
 resolver = "2"
@@ -67,6 +69,8 @@ tower-http = { version = "0.5", default-features = false, features = [
     "trace",
 ] }
 # orm require
+# diesel = { version = "2.1.4", features = ["postgres_backend", "chrono"] }
+# diesel-async = { version = "0.4.1", features = ["deadpool", "postgres"] }
 # sqlite: features = ["sqlite", "sqlite-create-many"]
 # mysql: features = ["mysql"]
 # postgres: features = ["postgresql"]
