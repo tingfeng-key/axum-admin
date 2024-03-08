@@ -1,16 +1,16 @@
 [workspace]
 members = [
-    "app/prisma_cli",
-    "app/cli",
-    "app/admin",
-    "app/api",
-    "app/merchant",
+    # "app/prisma_cli",
+    # "app/cli",
+    # "app/admin",
+    # "app/api",
+    # "app/merchant",
     "config",
-    "model",
+    # "model",
     "service",
     "utils", 
 ]
-default-members = ["app/cli"]
+# default-members = ["app/cli"]
 resolver = "2"
 
 [workspace.package]
@@ -114,6 +114,7 @@ lettre = { version = "0.11", default-features = false, features = [
 ] }
 # big decimal require
 bigdecimal = { version = "0.3", features = ["serde"] }
+dotenvy = { version = "0.15.0" }
 
 [profile.release]
 codegen-units = 1

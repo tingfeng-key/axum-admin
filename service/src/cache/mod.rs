@@ -4,7 +4,10 @@ use utils::datetime::now_time;
 
 mod driver;
 mod types;
-pub use driver::{database::Database as DatabaseDriver, memory::Memroy as MemoryDriver};
+
+#[cfg(feature = "cache-database")]
+pub use driver::database::Database as DatabaseDriver;
+pub use driver::memory::Memroy as MemoryDriver;
 pub use types::Types as CacheType;
 
 pub enum CacheDriver {
@@ -20,7 +23,7 @@ impl CacheDriver {
     pub fn new_memory() -> Cache<driver::memory::Memroy> {
         Cache::new(driver::memory::Memroy::default())
     }
-
+    #[cfg(feature = "cache-database")]
     pub fn new_database(
         connect_pool: model::connect::DbConnectPool,
     ) -> Cache<driver::database::Database> {

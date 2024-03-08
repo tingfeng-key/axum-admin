@@ -1,14 +1,11 @@
-use serde_repr::{Deserialize_repr, Serialize_repr};
-
-#[derive(Debug, Clone, PartialEq, Eq, Serialize_repr, Deserialize_repr)]
-#[repr(i32)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub enum Types {
-    SystemAuthJwt = 0,
-    SystemAuthLoginCaptcha = 1,
-    SystemAuthLoginMobile = 2,
-    SystemAuthLoginQrCode = 3,
-    MemberAuthRegisterEmail = 4,
-    MemberAuthLoginEmail = 5,
+    SystemAuthJwt,
+    SystemAuthLoginCaptcha,
+    SystemAuthLoginMobile,
+    SystemAuthLoginQrCode,
+    MemberAuthRegisterEmail,
+    MemberAuthLoginEmail,
 }
 impl From<i32> for Types {
     fn from(value: i32) -> Self {

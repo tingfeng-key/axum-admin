@@ -6,12 +6,16 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-prisma-client-rust = { workspace = true }
+# prisma-client-rust = { workspace = true }
 serde = { workspace = true }
 serde_json = { workspace = true }
-serde_repr = { workspace = true }
-async-recursion = { workspace = true }
-fastrand = { workspace = true }
-async-trait = { workspace = true }
-getset = { workspace = true }
-utils = { path = "../utils", features=["paginate", "tree", "datetime"] }
+# serde_repr = { workspace = true }
+# async-recursion = { workspace = true }
+# fastrand = { workspace = true }
+# async-trait = { workspace = true }
+# getset = { workspace = true }
+utils = { path = "../utils", features=["datetime"] }
+model = { path = "../model", optional = true }
+
+[features]
+cache-database = ["dep:model"]

@@ -8,7 +8,7 @@ pub struct Memroy {
     data: Vec<Info>,
 }
 
-#[async_trait::async_trait]
+// #[async_trait::async_trait]
 impl Driver for Memroy {
     async fn put<T: Serialize + std::marker::Send + std::marker::Sync>(
         &mut self,

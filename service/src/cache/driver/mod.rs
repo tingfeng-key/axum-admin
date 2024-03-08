@@ -1,27 +1,40 @@
 use crate::{cache::Info, Result};
 use serde::Serialize;
 
+#[cfg(feature = "cache-database")]
 pub mod database;
 pub mod memory;
 
-#[async_trait::async_trait]
+// #[async_trait::async_trait]
 pub trait Driver {
     /// Storing Items In The Cache
-    async fn put<T: Serialize + std::marker::Send + std::marker::Sync>(
+    fn put<T: Serialize + std::marker::Send + std::marker::Sync>(
         &mut self,
         r#type: i32,
         key: &str,
         value: T,
         valid_time_length: Option<i64>,
         attach: Option<String>,
-    ) -> Result<Info>;
+    ) -> impl std::future::Future<Output = Result<Info>> + Send;
 
     /// Retrieving Items From The Cache
-    async fn first(&self, r#type: i32, key: &str, default: Option<Info>) -> Result<Option<Info>>;
+    fn first(
+        &self,
+        r#type: i32,
+        key: &str,
+        default: Option<Info>,
+    ) -> impl std::future::Future<Output = Result<Option<Info>>> + Send;
 
     /// Retrieve & Delete
-    async fn pull(&mut self, r#type: i32, key: &str) -> Result<Info>;
+    fn pull(
+        &mut self,
+        r#type: i32,
+        key: &str,
+    ) -> impl std::future::Future<Output = Result<Info>> + Send;
 
     /// clear the entire cache
-    async fn flush(&mut self, r#type: Option<i32>) -> Result<i64>;
+    fn flush(
+        &mut self,
+        r#type: Option<i32>,
+    ) -> impl std::future::Future<Output = Result<i64>> + Send;
 }
