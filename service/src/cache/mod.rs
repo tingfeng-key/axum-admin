@@ -1,4 +1,4 @@
-use crate::Result;
+use crate::{Error, Result};
 use serde::Serialize;
 use utils::datetime::now_time;
 
@@ -56,7 +56,7 @@ where
         self.0
             .first(r#type.into(), key, default)
             .await?
-            .ok_or(super::ServiceError::CacheNotFound)
+            .ok_or(Error::CacheNotFound)
     }
     pub async fn put<T, P: Into<i32>>(
         &mut self,

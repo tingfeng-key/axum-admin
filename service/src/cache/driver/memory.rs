@@ -1,5 +1,5 @@
 use super::Driver;
-use crate::{cache::Info, Result, ServiceError};
+use crate::{cache::Info, Error, Result};
 use serde::Serialize;
 use utils::datetime::now_timestamp;
 
@@ -43,9 +43,9 @@ impl Driver for Memroy {
     }
     async fn pull(&mut self, r#type: i32, key: &str) -> Result<Info> {
         let info = self
-            .first(r#type.clone(), key, None)
+            .first(r#type, key, None)
             .await?
-            .ok_or(ServiceError::CacheNotFound)?;
+            .ok_or(Error::CacheNotFound)?;
         self.data = self
             .data
             .clone()

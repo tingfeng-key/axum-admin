@@ -1,5 +1,5 @@
 use super::Driver;
-use crate::{cache::Info, Result, ServiceError};
+use crate::{cache::Info, Error, Result};
 use model::{connect::DbConnectPool, system_cache};
 use serde::Serialize;
 
@@ -58,7 +58,7 @@ impl Driver for Database {
             },
         )
         .await?
-        .ok_or(ServiceError::CacheNotFound)?;
+        .ok_or(Error::CacheNotFound)?;
         Ok(system_cache::Entity::soft_delete(&mut conn, info.id)
             .await?
             .into())
