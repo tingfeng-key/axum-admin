@@ -281,36 +281,6 @@ impl SearchParams {
     }
 }
 
-#[derive(Debug, Serialize, Getters)]
-pub struct Info {
-    #[getset(get = "pub")]
-    id: i32,
-    #[getset(get = "pub")]
-    username: String,
-    nickname: String,
-    role_id: Option<i32>,
-    dept_id: Option<i32>,
-    phone: String,
-    email: String,
-    sex: i32,
-    #[serde(skip)]
-    #[getset(get = "pub")]
-    password: String,
-    #[serde(skip)]
-    #[getset(get = "pub")]
-    salt: String,
-    describe: String,
-    expire_time: Option<String>,
-    status: i32,
-    created_at: String,
-    last_login_ip: String,
-    last_login_time: Option<String>,
-    #[getset(get = "pub")]
-    dept: Option<system_dept_service::Info>,
-    #[getset(get = "pub")]
-    role: Option<system_role_service::Info>,
-}
-
 impl From<system_user::Data> for Info {
     fn from(value: system_user::Data) -> Self {
         let dept = match value.dept() {

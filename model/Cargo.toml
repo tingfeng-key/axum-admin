@@ -5,11 +5,16 @@ edition.workspace = true
 rust-version.workspace = true
 
 [dependencies]
+serde = { workspace = true }
+serde_repr = { workspace = true }
+serde_json = { workspace = true }
 diesel = { workspace = true, optional = true }
 diesel-async = { workspace = true, optional = true }
 prisma-client-rust = { workspace = true, optional = true }
+utils = { path = "../utils", features = ["datetime"] }
 
 [features]
+default = ["prisma"]
 prisma = ["dep:prisma-client-rust"]
 diesel = ["dep:diesel"]
-diesel_async = ["dep:diesel", "diesel-async"]
+diesel_async = ["diesel", "diesel-async"]
