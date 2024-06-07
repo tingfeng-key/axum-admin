@@ -9,6 +9,7 @@ members = [
     "model",
     "service",
     "utils", 
+    "migration",
 ]
 # default-members = ["app/cli"]
 resolver = "2"
