@@ -6,9 +6,6 @@ pub struct Migration;
 #[async_trait::async_trait]
 impl MigrationTrait for Migration {
     async fn up(&self, manager: &SchemaManager) -> Result<(), DbErr> {
-        // Replace the sample below with your own migration scripts
-        todo!();
-
         manager
             .create_table(
                 Table::create()
@@ -21,7 +18,6 @@ impl MigrationTrait for Migration {
                     .col(string(SystemDictData::Remark))
                     .col(integer(SystemDictData::Status))
                     .col(integer(SystemDictData::Sort))
-                    .col(string(Post::Text))
                     .to_owned(),
             )
             .await

@@ -16,6 +16,7 @@ impl MigrationTrait for Migration {
                     .col(integer(SystemLoginLog::UserId))
                     .col(string(SystemLoginLog::IpAddress).default(""))
                     .col(string(SystemLoginLog::IpAddressName).default(""))
+                    .col(string(SystemLoginLog::BrowserAgent).default(""))
                     .to_owned(),
             )
             .await

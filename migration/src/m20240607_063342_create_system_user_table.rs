@@ -17,6 +17,7 @@ impl MigrationTrait for Migration {
                     .col(integer(SystemUser::RoleId).default(0))
                     .col(integer(SystemUser::DeptId).default(0))
                     .col(string(SystemUser::Phone).default(""))
+                    .col(string(SystemUser::Email).default(""))
                     .col(integer(SystemUser::Sex).default(1))
                     .col(string(SystemUser::Password).default(""))
                     .col(string(SystemUser::Salt).default(""))

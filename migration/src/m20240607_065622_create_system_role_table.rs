@@ -16,6 +16,7 @@ impl MigrationTrait for Migration {
                     .col(string_uniq(SystemRole::Sign))
                     .col(string(SystemRole::Describe).default(""))
                     .col(integer(SystemRole::Status).default(1))
+                    .col(integer(SystemRole::Sort).default(0))
                     .to_owned(),
             )
             .await
@@ -34,7 +35,8 @@ enum SystemRole {
     Id,
     Name,
     Sign,
-    Sort,
+
     Describe,
     Status,
+    Sort,
 }

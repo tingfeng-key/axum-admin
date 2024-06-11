@@ -25,7 +25,7 @@ impl MigrationTrait for Migration {
                     .col(string(Member::Status).default(""))
                     .col(string(Member::LastLoginIp).default(""))
                     .col(string(Member::LastLoginTime).default(""))
-                    .col(string(Post::Text))
+                    .col(string(Member::InviteCode).default(""))
                     .to_owned(),
             )
             .await

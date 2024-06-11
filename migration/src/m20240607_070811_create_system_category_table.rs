@@ -18,6 +18,16 @@ impl MigrationTrait for Migration {
                     .col(string(Category::Icon).default(""))
                     .col(integer(Category::Status).default(1))
                     .col(integer(Category::Sort).default(0))
+                    .foreign_key(
+                        ForeignKeyCreateStatement::new()
+                            .name("category_pid_fkey")
+                            .from_tbl(Category::Table)
+                            .from_col(Category::ParentId)
+                            .to_tbl(Category::Table)
+                            .to_col(Category::Id)
+                            .on_update(ForeignKeyAction::Cascade)
+                            .on_delete(ForeignKeyAction::Restrict),
+                    )
                     .to_owned(),
             )
             .await
@@ -31,7 +41,7 @@ impl MigrationTrait for Migration {
 }
 
 #[derive(DeriveIden)]
-enum Category {
+pub enum Category {
     Table,
     Id,
     ParentId,
